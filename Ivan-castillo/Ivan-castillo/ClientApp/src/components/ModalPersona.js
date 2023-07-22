@@ -2,10 +2,10 @@
 import { Modal, ModalBody, ModalHeader, Form, FormGroup, Input, Label, ModalFooter, Button } from "reactstrap"
 
 const modeloPersona = {
-    Id: 0,
-    Name: "",
-    Description: "",
-    IsCompleted: ""
+    id: 0,
+    name: "",
+    description: "",
+    isCompleted: false
 }
 
 
@@ -15,18 +15,18 @@ const ModalPersona = ({ mostrarModal, setMostrarModal, guardarPersona, editar, s
 
     const actualizarDato = (e) => {
 
-        console.log(e.target.Name + " : " + e.target.value)
+        console.log(e.target.name + " : " + e.target.value)
         setPersona(
             {
                 ...persona,
-                [e.target.Name]: e.target.value
+                [e.target.name]: e.target.value
             }
         )
     }
 
     const enviarDatos = () => {
 
-        if (persona.Id == 0) {
+        if (persona.id == 0) {
             guardarPersona(persona)
         } else {
             editarPersona(persona)
@@ -56,22 +56,18 @@ const ModalPersona = ({ mostrarModal, setMostrarModal, guardarPersona, editar, s
         <Modal isOpen={mostrarModal}>
             <ModalHeader>
 
-                {persona.Id == 0 ? "Nueva Persona" : "Editar Persona"}
+                {persona.id == 0 ? "Nueva Persona" : "Editar Persona"}
 
             </ModalHeader>
             <ModalBody>
                 <Form>
                     <FormGroup>
-                        <Label>Nombre</Label>
-                        <Input name="Name" onChange={(e) => actualizarDato(e)} value={persona.Name} />
+                        <Label>Name</Label>
+                        <Input name="name" onChange={(e) => actualizarDato(e)} value={persona.Name} />
                     </FormGroup>
                     <FormGroup>
-                        <Label>Correo</Label>
-                        <Input name="Description" onChange={(e) => actualizarDato(e)} value={persona.Description} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>Telefono</Label>
-                        <Input name="IsCompleted" onChange={(e) => actualizarDato(e)} value={persona.IsCompleted} />
+                        <Label>Description</Label>
+                        <Input name="description" onChange={(e) => actualizarDato(e)} value={persona.Description} />
                     </FormGroup>
                 </Form>
             </ModalBody>

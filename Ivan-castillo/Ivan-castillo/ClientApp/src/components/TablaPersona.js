@@ -1,7 +1,13 @@
 ﻿import React from "react";
 import { Table, Button } from "reactstrap";
 
-const TablaPersona = ({ data }) => {
+const TablaPersona = ({ data, setEditar, mostrarModal, setMostrarModal, eliminarPersona }) => {
+
+    const enviarDatos = (persona) => {
+        setEditar(persona)
+        setMostrarModal(!mostrarModal)
+
+    }
     return (
         <Table striped responsive>
             <thead>
@@ -25,10 +31,12 @@ const TablaPersona = ({ data }) => {
                                 <td>{item.Description}</td>
                                 <td>{item.IsCompleted}</td>
                                 <td>
-                                    <Button color="primary" size="sm" className="me-2">Editar</Button>
-                                </td>
-                                <td>
-                                    <Button color="danger" size="sm">Eliminar</Button>
+                                    <Button color="primary" size="sm" className="me-2"
+                                        onClick={() => enviarDatos(item)}
+                                    >Editar</Button>
+                                    <Button color="danger" size="sm"
+                                        onClick={() => eliminarPersona(item.Id)}
+                                    >Eliminar</Button>
                                 </td>
                             </tr>
                         ))
