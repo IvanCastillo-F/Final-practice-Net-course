@@ -7,6 +7,7 @@ const App = () => {
 
     const [personas, setPersona] = useState([])
     const [mostrarModal, setMostrarModal] = useState(false);
+    const [editar, setEditar] = useState(null)
 
     const mostrarDatos = async () => { 
         const response = await fetch("api/personaitem/Lista"); 
@@ -53,7 +54,25 @@ useEffect(() => {
 
         if (response.ok) {
             setMostrarModal(!mostrarModal);
-            mostrarContactos();
+            mostrarDatos();
+        }
+    }
+
+    const eliminarPersona = async (id) => {
+
+        var respuesta = window.confirm("desea eliminar el persona?")
+
+        if (!respuesta) {
+            return;
+        }
+
+
+        const response = await fetch("api/personaitem/Eliminar/" + id, {
+            method: 'DELETE',
+        })
+
+        if (response.ok) {
+            mostrarDatos();
         }
     }
 
@@ -65,17 +84,19 @@ useEffect(() => {
                 <Col sm="12">
                     <Card>
                         <CardHeader>
-                            <h5>Lista de contacto</h5>
+                            <h5>Lista de Personas</h5>
                         </CardHeader>
                         <CardBody>
                             <Button size="sm" color="success"
                                 onClick={() => setMostrarModal(!mostrarModal)}
-                            >Nuevo Contacto</Button>
+                            >Nueva Persona</Button>
                             <hr></hr>
                             <TablaPersona data={personas}
                                 setEditar={setEditar}
                                 mostrarModal={mostrarModal}
-                                setMostrarModal={setMostrarModal}/>
+                                setMostrarModal={setMostrarModal}
+                                eliminarPersona={eliminarPersona}
+                            />
                         </CardBody>
                     </Card>
                 </Col>

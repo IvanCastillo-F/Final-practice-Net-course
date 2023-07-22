@@ -12,9 +12,9 @@ const TablaPersona = ({ data, setEditar, mostrarModal, setMostrarModal, eliminar
         <Table striped responsive>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>IsCompletd</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>estaCompleta?</th>
                     <th></th>
                 </tr>
             </thead>
