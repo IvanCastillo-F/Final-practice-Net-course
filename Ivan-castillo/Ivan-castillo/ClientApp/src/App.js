@@ -10,7 +10,7 @@ const App = () => {
     const [editar, setEditar] = useState(null)
 
     const mostrarDatos = async () => { 
-        const response = await fetch("api/personaitem/Lista"); 
+        const response = await fetch("api/persona/Lista"); 
 
         if (response.ok) {
             const data = await response.json();
@@ -28,7 +28,7 @@ useEffect(() => {
 
     const guardarPersona = async (persona) => {
 
-        const response = await fetch("api/personaitem/Guardar", {
+        const response = await fetch("api/persona/Guardar", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -44,7 +44,7 @@ useEffect(() => {
 
     const editarPersona = async (persona) => {
 
-        const response = await fetch("api/personaitem/Editar", {
+        const response = await fetch("api/persona/Editar", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -67,7 +67,7 @@ useEffect(() => {
         }
 
 
-        const response = await fetch("api/personaitem/Eliminar/" + id, {
+        const response = await fetch("api/persona/Eliminar/" + id, {
             method: 'DELETE',
         })
 
@@ -109,7 +109,7 @@ useEffect(() => {
 
                 editar={editar}
                 setEditar={setEditar}
-                editarContacto={editarPersona}
+                editarPersona={editarPersona}
             />
         </Container>
     );

@@ -14,15 +14,14 @@ const ModalPersona = ({ mostrarModal, setMostrarModal, guardarPersona, editar, s
     const [persona, setPersona] = useState(modeloPersona);
 
     const actualizarDato = (e) => {
+        const { name, value, type, checked } = e.target;
+        const newValue = type === "checkbox" ? checked : value;
 
-        console.log(e.target.name + " : " + e.target.value)
-        setPersona(
-            {
-                ...persona,
-                [e.target.name]: e.target.value
-            }
-        )
-    }
+        setPersona({
+            ...persona,
+            [name]: newValue,
+        });
+    };
 
     const enviarDatos = () => {
 
@@ -63,11 +62,23 @@ const ModalPersona = ({ mostrarModal, setMostrarModal, guardarPersona, editar, s
                 <Form>
                     <FormGroup>
                         <Label>Name</Label>
-                        <Input name="name" onChange={(e) => actualizarDato(e)} value={persona.Name} />
+                        <Input name="name" onChange={(e) => actualizarDato(e)} value={persona.name} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Description</Label>
-                        <Input name="description" onChange={(e) => actualizarDato(e)} value={persona.Description} />
+                        <Input name="description" onChange={(e) => actualizarDato(e)} value={persona.description} />
+                    </FormGroup>
+                    <FormGroup check>
+                        {/* Cambiar el tipo de input a "checkbox" */}
+                        <Label check>
+                            <Input
+                                type="checkbox"
+                                name="isCompleted"
+                                onChange={actualizarDato}
+                                checked={persona.isCompleted}
+                            />
+                            Is Completed
+                        </Label>
                     </FormGroup>
                 </Form>
             </ModalBody>
